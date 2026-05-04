@@ -2,9 +2,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+int cmp(const void *a, const void *b) {
+    return *(int*)a - *(int*)b;
+}
+
 void gerarAleatorio(int v[], int n) {
     for (int i = 0; i < n; i++)
-        v[i] = rand() % 10;
+        v[i] = rand() % 100000;
 }
 
 void gerarOrdenado(int v[], int n) {
@@ -34,4 +38,20 @@ void executarTeste(void (*algoritmo)(int[], int, Resultado*), int v[], int n, Re
     fim = clock();
 
     r->tempo = medirTempo(inicio, fim);
+}
+
+void copiarVetor(int dest[], int src[], int n) {
+    for(int i = 0; i < n; i++) dest[i] = src[i];
+}
+
+void ordenarVetor(int v[], int n) {
+    qsort(v, n, sizeof(int), cmp);
+}
+
+void inverterVetor(int v[], int n) {
+    for(int i = 0; i < n/2; i++) {
+        int temp = v[i];
+        v[i] = v[n-1-i];
+        v[n-1-i] = temp;
+    }
 }

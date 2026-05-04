@@ -5,6 +5,7 @@
 
 void testarUmaVez(const char *nome,
                   void (*algoritmo)(int[], int, Resultado*),
+                  int *vetor,
                   int tamanho,
                   int tipo);
 #endif

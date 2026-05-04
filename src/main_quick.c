@@ -8,17 +8,48 @@
 
 // int tamanhos[] = {1000, 10000, 100000};
 
+
 int main() {
-    srand(time(NULL));
+    int tamanho = 100000; // Deve ser o mesmo tamanho gerado no txt
 
-    printf("\n%-15s | %-7s | %-10s | %-10s | %-12s | %-10s\n",
+    // 1. Pede espaço na memória para guardar os números
+    int *vetor = (int *)malloc(tamanho * sizeof(int));
+    if (vetor == NULL) {
+        printf("Erro de alocacao de memoria!\n");
+        return 1;
+    }
+
+    // 2. Abre o arquivo de texto no modo leitura ("r" = read)
+    FILE *arquivo = fopen("output/dados100000.txt", "r");
+    if (arquivo == NULL) {
+        printf("Erro: Arquivo 'dados100000.txt' nao encontrado!\n");
+        printf("Rode o gerador.c primeiro para criar o arquivo.\n");
+        free(vetor);
+        return 1;
+    }
+
+    printf("Lendo %d numeros do arquivo 'dados100000.txt'...\n", tamanho);
+
+    // 3. Lê linha por linha do .txt e guarda no nosso vetor
+    for (int i = 0; i < tamanho; i++) {
+        fscanf(arquivo, "%d", &vetor[i]);
+    }
+    fclose(arquivo);
+
+    printf("Leitura concluida! Iniciando o benchmark...\n\n");
+
+    // Cabeçalho bonito para a tabela 
+    printf("%-15s | %-7s | %-10s | %-10s | %-12s | %-10s\n",
        "Algoritmo", "Tamanho", "Estado", "Tempo (ms)", "Comparacoes", "Trocas");
+    printf("------------------------------------------------------------------------\n");
 
-    printf("--------------------------------------------------------------------------\n");
+    // 4. Executa o teste de fato!
+    // Passamos '0' no final só para a tabela imprimir "Aleatorio" no estado
+    testarUmaVez("Quick Sort", quickSort, vetor, tamanho, 2);
 
-    testarUmaVez("Quick Sort", quickSort, 1000, 0); // aleatorio
-    // testarUmaVez("Quick Sort", quickSort, 1000, 1); // ordenado
-    // testarUmaVez("Quick Sort", quickSort, 1000, 2); // inverso
+    // 5. Limpa a bagunça
+    free(vetor);
 
+    printf("\n=== TESTE CONCLUIDO ===\n");
     return 0;
 }

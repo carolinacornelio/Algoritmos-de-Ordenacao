@@ -4,20 +4,12 @@
 
 void testarUmaVez(const char *nome,
                   void (*algoritmo)(int[], int, Resultado *),
+                  int *vetor,
                   int tamanho,
                   int tipo)
 {
 
-   int *vetor = (int *)malloc(tamanho * sizeof(int));
    Resultado r;
-
-   // tipo: 0 = aleatorio, 1 = ordenado, 2 = inverso
-   if (tipo == 0)
-      gerarAleatorio(vetor, tamanho);
-   if (tipo == 1)
-      gerarOrdenado(vetor, tamanho);
-   if (tipo == 2)
-      gerarInverso(vetor, tamanho);
 
    executarTeste(algoritmo, vetor, tamanho, &r);
 
@@ -33,6 +25,4 @@ void testarUmaVez(const char *nome,
           nome, tamanho, estado,
           r.tempo * 1000, r.comparacoes, r.trocas);
 
-
-   free(vetor);
 }
