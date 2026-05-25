@@ -1,0 +1,14 @@
+Ambiente de Hardware
+Processador: 11th Gen Intel(R) Core(TM) i3-1115G4 @ 3.00GHz, 2995 Mhz, 2 Núcleo(s), 4 Processador(es) Lógico(s)
+Memória RAM: 20 GB
+Armazenamento: SSD NVMe
+Arquitetura: 64 bits
+
+Sistema Operacional
+Windows 11 Home Single Language 64 bits
+
+
+Compilador
+Compilador: GCC
+Padrão da linguagem: C99
+Flags de compilação: sem otimização (-O0 implícito)
