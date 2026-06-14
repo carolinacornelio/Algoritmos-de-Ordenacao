@@ -10,16 +10,31 @@ void testarUmaVez(const char *nome,
 {
 
    Resultado r;
+   char *estado;
+
+   switch (tipo)
+   {
+   case 0:
+      gerarAleatorio(vetor, tamanho);
+      estado = "Aleatorio";
+      break;
+
+   case 1:
+      gerarOrdenado(vetor, tamanho);
+      estado = "Ordenado";
+      break;
+
+   case 2:
+      gerarInverso(vetor, tamanho);
+      estado = "Inverso";
+      break;
+
+   default:
+      estado = "Desconhecido";
+      break;
+   }
 
    executarTeste(algoritmo, vetor, tamanho, &r);
-
-   char *estado;
-   if (tipo == 0)
-      estado = "Aleatorio";
-   if (tipo == 1)
-      estado = "Ordenado";
-   if (tipo == 2)
-      estado = "Inverso";
 
    printf("%-15s | %-7d | %-10s | %-10.6f | %-12lld | %-10lld\n",
           nome, tamanho, estado,
