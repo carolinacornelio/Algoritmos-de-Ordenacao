@@ -38,6 +38,7 @@ void executarTeste(void (*algoritmo)(int[], int, Resultado*), int v[], int n, Re
     fim = clock();
 
     r->tempo = medirTempo(inicio, fim);
+
 }
 
 void copiarVetor(int dest[], int src[], int n) {
@@ -54,4 +55,11 @@ void inverterVetor(int v[], int n) {
         v[i] = v[n-1-i];
         v[n-1-i] = temp;
     }
+}
+
+void imprimirVetor(int v[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", v[i]);
+    }
+    printf("\n");
 }

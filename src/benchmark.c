@@ -12,6 +12,7 @@ void testarUmaVez(const char *nome,
    Resultado r;
    char *estado;
 
+   // Preparando o vetor comforme o cenario escolhido
    switch (tipo)
    {
    case 0:
@@ -20,24 +21,24 @@ void testarUmaVez(const char *nome,
       break;
 
    case 1:
-      gerarOrdenado(vetor, tamanho);
+      gerarAleatorio(vetor, tamanho);
+      ordenarVetor(vetor, tamanho);
       estado = "Ordenado";
       break;
 
    case 2:
-      gerarInverso(vetor, tamanho);
+      gerarAleatorio(vetor, tamanho);
+      ordenarVetor(vetor, tamanho);
+      inverterVetor(vetor, tamanho);
       estado = "Inverso";
       break;
 
    default:
       estado = "Desconhecido";
-      break;
    }
-
    executarTeste(algoritmo, vetor, tamanho, &r);
 
    printf("%-15s | %-7d | %-10s | %-10.6f | %-12lld | %-10lld\n",
           nome, tamanho, estado,
           r.tempo * 1000, r.comparacoes, r.trocas);
-
 }
